@@ -74,3 +74,32 @@ function countUniqueValues(arr){
   }
   return i + 1;
 }
+
+const areThereDuplicates = (...args) => {
+  let counter = {};
+
+  for (let val of args){
+    counter[val] ? counter[val]++ : counter[val] = 1;  
+  }
+  for (let val in counter){
+    if(counter[val] > 1) return true;
+  }
+  console.log(counter)
+  console.log(...args)
+  return false;
+}
+
+function areThereDuplicates(...args) {
+  // Two pointers
+  args.sort((a,b) => a > b);
+  let start = 0;
+  let next = 1;
+  while(next < args.length){
+    if(args[start] === args[next]){
+        return true
+    }
+    start++
+    next++
+  }
+  return false
+}
